@@ -1,0 +1,13 @@
+{
+  "name": "LocaMed",
+  "short_name": "LocaMed",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f6fbfa",
+  "theme_color": "#2aa79b",
+  "icons": 
+  [
+    { "src": "assets/icon/LocaMed-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon/LocaMed-512-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

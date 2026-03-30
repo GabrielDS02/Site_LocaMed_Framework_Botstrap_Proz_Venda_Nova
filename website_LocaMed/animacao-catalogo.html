@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecionando...</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #0ea5e9, #0284c7, #0369a1, #38bdf8);
+      background-size: 400% 400%;
+      animation: fundoAnimado 6s ease infinite;
+    }
+
+    @keyframes fundoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo {
+      width: 40vw;
+      max-width: 300px;
+      min-width: 150px;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.9; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <img src="assets/icon/Logo_introdução.png" alt="Logo" class="logo">
+
+  <script>
+    // URL de ida
+    const paginaDestino = "carrocel.html";
+
+    // Tempo antes de ir (ms)
+    setTimeout(() => {
+      window.location.href = paginaDestino;
+
+      // Volta rápida (opcional)
+      setTimeout(() => {
+        window.history.back();
+      }, 1500);
+
+    }, 1500);
+  </script>
+
+</body>
+</html>

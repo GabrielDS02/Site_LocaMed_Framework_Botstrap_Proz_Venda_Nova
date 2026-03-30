@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LocMed - Locação de equipamentos hospitalares com qualidade e rapidez">
+<meta name="keywords" content="equipamentos hospitalares, locação médica, hospitais, clínicas">
+<meta name="author" content="LocMed">
+<title>LocMed | Equipamentos Hospitalares</title>
+
+<!-- link - framework/botstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+<!-- link - framework/icons -->
+<!-- FONT AWESOME (ícones) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="icon" href="assets/icon/LocaMed-512-512.png"/>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d6efd">
+
+  <link rel="stylesheet" href="css/css_mapa.css">
+  <link rel="stylesheet" href="css/formulario.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/diferenciais.css">
+  <link rel="stylesheet" href="css/publivo_alvo.css">
+  <link rel="stylesheet" href="css/servicos.css">
+  <link rel="stylesheet" href="css/sobre.css">
+  <link rel="stylesheet" href="css/whatssapfixed.css">
+
+<style>
+body 
+{
+    background: linear-gradient(135deg, #000c18, #0d3a67, #18518a);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* NAVBAR */
+.navbar 
+{
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
+    padding: 15px 0;
+}
+
+/* LOGO */
+.navbar-brand 
+{
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: white !important;
+}
+
+/* LINKS */
+.navbar a 
+{
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: 700;
+    margin-left: 15px;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* EFEITO UNDERLINE ANIMADO */
+.navbar a::after 
+{
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background: #00d4ff;
+    transition: 0.3s;
+}
+
+.navbar a:hover::after 
+{
+    width: 100%;
+}
+
+/* HOVER */
+.navbar a:hover 
+{
+    color: #ffffff !important;
+}
+
+/* NAVBAR AO SCROLL (fica mais escura) */
+.navbar.scrolled 
+{
+    background: rgba(13, 110, 253, 0.95);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+}
+
+/* CAROUSEL */
+.carousel-item 
+{
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+}
+.carousel-overlay {
+    background: rgba(0,0,0,0.5);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.divider
+{
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,transparent,#0d6efd,transparent);
+  margin:48px 0;
+}
+
+/* SECTIONS */
+section {
+    padding: 80px 0;
+}
+
+.section-title 
+{
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* CARDS */
+.card 
+{
+    border: none;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+.card:hover 
+{
+    transform: translateY(-10px);
+}
+
+/* REVEAL */
+.reveal 
+{
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.6s ease;
+}
+.reveal.active 
+{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FOOTER */
+footer 
+{
+    background: #0d6efd;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+/* BOTÃO CUSTOM */
+.custom-toggler 
+{
+    border: none;
+    background: transparent;
+    width: 30px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* LINHAS */
+.custom-toggler span 
+{
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    left: 0;
+    transition: 0.4s;
+    border-radius: 5px;
+}
+
+/* POSIÇÃO DAS LINHAS */
+.custom-toggler span:nth-child(1) 
+{
+    top: 0;
+}
+.custom-toggler span:nth-child(2) 
+{
+    top: 10px;
+}
+.custom-toggler span:nth-child(3) 
+{
+    top: 20px;
+}
+
+/* ANIMAÇÃO PARA X */
+.custom-toggler.active span:nth-child(1) 
+{
+    transform: rotate(45deg);
+    top: 10px;
+    background: #00d4ff; /* cor bonita */
+}
+
+.custom-toggler.active span:nth-child(2) 
+{
+    opacity: 0;
+}
+
+.custom-toggler.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 10px;
+    background: #00d4ff;
+}
+
+#produtos-container
+{
+    border-radius:15px;
+    background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+#carouselPreview img{
+    height:790px;
+    object-fit:cover;
+    transition:0.5s;
+}
+
+#carouselPreview img:hover
+{
+    transform:scale(1.05);
+}
+
+#fundo_branco
+{
+    padding: 100px 0;
+    background: #ffffffe6;
+    border-radius: 10px;
+}
+
+
+/* RESPONSIVO */
+@media (max-width: 768px) 
+{
+    #fundo_branco
+    {
+        background: none !important;
+    }
+    #container-mapa h2
+    {
+        color: #ffffff;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+    <a class="navbar-brand fw-bold" href="#"><img src="assets/icon/Logo_introdução.png" style="width: 80px;"><img></a>
+
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div id="menu" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                <li class="nav-item"><a class="nav-link" href="#publico">Público</a></li>
+                <li class="nav-item"><a class="nav-link" href="#produtos-container">Produtos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#diferenciais">Diferenciais</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                <li class="nav-item"><a class="nav-link" href="#container-mapa">Localização</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- CAROUSEL -->
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+<div class="carousel-inner">
+
+<div class="carousel-item active" style="background-image:url('assets/imagem-equipamento.jpg');">
+<div class="carousel-overlay">
+<h1>Equipamentos Hospitalares de Alta Qualidade</h1>
+</div>
+</div>
+
+<div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b');">
+<div class="carousel-overlay">
+<h1>Soluções Modernas para a Saúde</h1>
+</div>
+</div>
+
+<div class="carousel-item" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef');">
+<div class="carousel-overlay">
+<h1>Rapidez e Custo-Benefício</h1>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="divider"></div>
+<!-- SOBRE -->
+<section id="sobre" class="sobre-section reveal">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- LOGO ESQUERDA -->
+            <div class="col-lg-6 text-center mb-4 mb-lg-0">
+                <div class="logo-box">
+                    <img src="assets/locamed_3d.gif" alt="LocMed Logo">
+                </div>
+            </div>
+
+            <!-- CONTEÚDO DIREITA -->
+            <div class="col-lg-6">
+
+                <h2 class="section-title mb-3">Sobre a LocMed</h2>
+
+                <p class="subtitulo-sobre mb-4">
+                    Tecnologia, inovação e cuidado em cada detalhe da saúde.
+                </p>
+
+                <p class="texto-sobre mb-4">
+                    A LocMed atua na locação de equipamentos hospitalares, oferecendo soluções modernas e acessíveis para clínicas, hospitais e profissionais da área da saúde.
+                </p>
+
+                <p class="texto-sobre mb-4">
+                    Fundada em 2022, em um cenário pós-pandemia, a empresa nasceu para suprir a necessidade de equipamentos de qualidade com entrega rápida e excelente custo-benefício.
+                </p>
+
+                <!-- CARDS -->
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <div class="card-sobre">
+                            <i class="fas fa-bolt"></i>
+                            <h5>Agilidade</h5>
+                            <p>Entrega rápida e atendimento eficiente.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-sobre">
+                            <i class="fas fa-check-circle"></i>
+                            <h5>Qualidade</h5>
+                            <p>Equipamentos modernos e revisados.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-sobre">
+                            <i class="fas fa-hand-holding-medical"></i>
+                            <h5>Cuidado</h5>
+                            <p>Foco total no bem-estar do paciente.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-sobre">
+                            <i class="fas fa-lightbulb"></i>
+                            <h5>Inovação</h5>
+                            <p>Soluções modernas para a saúde.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="servicos-section reveal">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+
+            <!-- CONTEÚDO DIREITA -->
+            <div class="col-lg-6">
+
+                <h2 class="section-title mb-3">Nossos Serviços</h2>
+
+                <p class="subtitulo-servicos mb-4">
+                    Oferecemos soluções completas em locação de equipamentos hospitalares, garantindo tecnologia de ponta, segurança e suporte especializado para atender todas as demandas da área da saúde.
+                </p>
+
+                <div class="row g-3">
+
+                    <!-- CARD 1 -->
+                    <div class="col-md-6">
+                        <div class="card-servico">
+                            <i class="fas fa-procedures"></i>
+                            <h5>Locação de Equipamentos</h5>
+                            <p>
+                                Equipamentos modernos e seguros para diferentes necessidades médicas, com manutenção garantida.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="col-md-6">
+                        <div class="card-servico">
+                            <i class="fas fa-hospital-user"></i>
+                            <h5>Rede Completa de Saúde</h5>
+                            <p>
+                                Atendimento especializado para hospitais, clínicas e centros médicos de todos os portes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="col-md-6">
+                        <div class="card-servico">
+                            <i class="fas fa-microchip"></i>
+                            <h5>Alta Complexidade</h5>
+                            <p>
+                                Equipamentos de última geração com tecnologia avançada para procedimentos complexos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 EXTRA (deixa mais rico) -->
+                    <div class="col-md-6">
+                        <div class="card-servico">
+                            <i class="fas fa-headset"></i>
+                            <h5>Suporte Especializado</h5>
+                            <p>
+                                Equipe preparada para oferecer suporte rápido e eficiente sempre que necessário.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- IMAGEM ESQUERDA -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="img-servicos">
+                    <img src="assets/hospital.avif" alt="Serviços LocMed">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- PÚBLICO -->
+<section id="publico" class="publico-section reveal">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- IMAGEM ESQUERDA -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="img-publico">
+                    <img src="assets/homem_cadeira_de_rodas.jpg" alt="Público LocMed">
+                </div>
+            </div>
+
+            <!-- CONTEÚDO DIREITA -->
+            <div class="col-lg-6">
+
+                <h2 class="section-title mb-3">Quem atendemos</h2>
+
+                <p class="subtitulo-publico mb-4">
+                    A LocMed oferece soluções completas para toda a rede de saúde, atendendo desde grandes instituições até profissionais independentes com eficiência, qualidade e rapidez.
+                </p>
+
+                <div class="row g-3">
+
+                    <!-- CARD -->
+                    <div class="col-md-6">
+                        <div class="card-publico">
+                            <i class="fas fa-hospital"></i>
+                            <h5>Hospitais</h5>
+                            <p>Equipamentos de alta performance para demandas complexas.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-publico">
+                            <i class="fas fa-clinic-medical"></i>
+                            <h5>Clínicas</h5>
+                            <p>Soluções acessíveis e eficientes para atendimentos diários.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-publico">
+                            <i class="fas fa-user-md"></i>
+                            <h5>Centros Médicos</h5>
+                            <p>Estrutura completa para múltiplas especialidades.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-publico">
+                            <i class="fas fa-stethoscope"></i>
+                            <h5>Profissionais da Saúde</h5>
+                            <p>Equipamentos sob demanda para uso individual.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<section id="fundo_branco">
+<section id="produtos-container" class="container py-5">
+
+    <div class="row align-items-center">
+
+        <!-- TEXTO -->
+        <div class="col-md-6 text-white">
+            <h2 class="mb-3">Equipamentos Profissionais</h2>
+            <p>
+                Trabalhamos com equipamentos médicos modernos e de alta qualidade,
+                ideais para clínicas, hospitais e atendimentos especializados.
+            </p>
+
+            <a href="animacao-catalogo.html" class="btn btn-lg btn-info mt-3 mb-3">
+                Ver Equipamentos →
+            </a>
+        </div>
+
+            <!-- CARROSSEL -->
+            <div class="col-md-6">
+
+                <div id="carouselPreview" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-inner rounded shadow">
+
+                        <div class="carousel-item active">
+                        <img src="assets/medico1.jpg" class="d-block w-100">
+                            </div>
+
+                            <div class="carousel-item">
+                            <img src="assets/medico2.avif" class="d-block w-100">
+                            </div>
+
+                            <div class="carousel-item">
+                        <img src="assets/medico3.jpeg" class="d-block w-100">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div>
+
+</section>
+</section>
+
+
+
+<div class="divider"></div>
+<!-- DIFERENCIAIS -->
+<section id="diferenciais" class="diferenciais-section reveal">
+
+    <div class="container">
+
+        <h2 class="section-title text-center mb-5">
+            Por que escolher a LocMed?
+        </h2>
+
+        <p class="text-center mb-5 subtitulo-dif">
+            Oferecemos soluções completas em locação de equipamentos hospitalares, garantindo eficiência, qualidade e atendimento humanizado.
+        </p>
+
+        <div class="row g-4">
+
+            <!-- CARD 1 -->
+            <div class="col-md-4">
+                <div class="card-dif">
+                    <div class="icon-dif">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h4>Excelente custo-benefício</h4>
+                    <p>
+                        Equipamentos de alto padrão com valores acessíveis, permitindo que clínicas e hospitais tenham acesso à melhor tecnologia sem comprometer o orçamento.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-md-4">
+                <div class="card-dif">
+                    <div class="icon-dif">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4>Alta qualidade</h4>
+                    <p>
+                        Trabalhamos com equipamentos modernos, seguros e revisados constantemente, garantindo desempenho e confiabilidade para o cuidado com a saúde.
+                    </p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-md-4">
+                <div class="card-dif">
+                    <div class="icon-dif">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <h4>Entrega rápida</h4>
+                    <p>
+                        Logística eficiente para atender com agilidade, reduzindo o tempo de espera e garantindo suporte rápido quando você mais precisa.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- CONTATO -->
+<section id="fundo_branco">
+<section id="contato" class="container reveal">
+    <div id="contato-div">
+        <h2 class="titulo-contato text-center mb-5">Entre em contato com a gente</h2>
+    </div>
+    <div class="form-box">
+        <form id="formContato">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <input type="text" id="nome" class="form-control" placeholder="Seu nome" required>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="tel" id="telefone" class="form-control" placeholder="Seu WhatsApp" required>
+                </div>
+
+                <div class="col-12">
+                    <input type="text" id="endereco" class="form-control" placeholder="Seu endereço completo" required>
+                </div>
+
+                <div class="col-md-6">
+                    <select id="equipamento" class="form-control" required>
+                        <option value="">Equipamento desejado</option>
+                        <option>Oxigênio</option>
+                        <option>Cadeira de rodas</option>
+                        <option>Cama hospitalar</option>
+                        <option>Monitor cardíaco</option>
+                        <option>Outro</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="date" id="dataInicio" class="form-control" required>
+                </div>
+
+                <div class="col-md-3">
+                    <input type="date" id="dataFim" class="form-control" required>
+                </div>
+
+                <div class="col-12">
+                    <textarea id="mensagemExtra" class="form-control" rows="4" placeholder="Alguma observação?"></textarea>
+                </div>
+
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn-enviar">Solicitar Locação</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</section>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- MAPA -->
+<section id="fundo_branco">
+<div id="container-mapa" class="container reveal">
+    <h2>📍Nossa localização</h2>
+    <div id="map-container" class="map-wrapper">
+        <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.9584902654424!2d-43.950338124469006!3d-19.92615398146141!2m3!1f0!2f0!3f0!2f3!1i1024!2i768!4f13.1!3m3!1m2!1s0xa69760a72e3b65%3A0x3ce9ba6b00962564!2sR.%20Rio%20Grande%20do%20Sul%2C%201110%20-%20Santo%20Agostinho%2C%20Belo%20Horizonte%20-%20MG%2C%2030170-111!5e0!3m2!1spt-BR!2sbr!4v1774356023806!5m2!1spt-BR!2sbr" 
+        width="100%" 
+        height="450" 
+        style="border:0;" 
+        loading="lazy">
+        </iframe>
+
+        <!-- CARD LOCALIZAÇÃO -->
+        <div class="localizacao-box reveal">
+            <h3>LocMed</h3>
+            <p>Rua Rio Grande do Sul, 1110</p>
+            <span>Belo Horizonte - MG</span>
+        </div>
+
+    </div>
+</div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<footer class="footer">
+
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- LOGO + SOBRE -->
+            <div class="col-md-4">
+                <img src="assets/icon/Logo_introdução.png" class="footer-logo" alt="LocMed">
+                <p class="footer-text">
+                    Soluções modernas em locação de equipamentos hospitalares, com qualidade, rapidez e confiança.
+                </p>
+            </div>
+
+            <!-- LINKS -->
+            <div class="col-md-2">
+                <h5>Páginas Institucionais</h5>
+                <ul>
+                    <li><a href="animacao-politica.html">Política de Privacidade</a></li>
+                    <li><a href="animacao-missao.html">Missão, Visão e Valores</a></li>
+                </ul>
+            </div>
+
+            <!-- CONTATO -->
+            <div class="col-md-3">
+                <h5>Contato</h5>
+
+                <a href="tel:+5531999999999" class="btn-ligar">
+                    <i class="fas fa-phone"></i> Ligar agora
+                </a>
+
+                <a href="https://wa.me/5531999999999" class="btn-whats" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+
+                <!-- REDES -->
+                <div class="social-icons">
+
+                    <a href="#" class="icon" data-name="Instagram | @locmed">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="#" class="icon" data-name="Facebook | LocMed">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+
+                    <a href="#" class="icon" data-name="Google Meu Negócio">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- PARCERIAS -->
+            <div class="col-md-3">
+                <h5>Parcerias</h5>
+
+                <a href="https://www.unimedbh.com.br/"><div class="parcerias" style="cursor: pointer;">
+                    <img src="assets/icon/unimed_com_br_logo.jpg" alt="Unimed">
+                    <!-- você pode adicionar mais logos aqui -->
+                </div></a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+        <p>© 2026 LocMed - Todos os direitos reservados</p>
+    </div>
+
+</footer>
+
+    <!-- WHATSAPP FIXO -->
+    <a id="whatsappFixed" class="whatsapp-fixed" href="#" target="_blank" rel="noopener" aria-label="Abrir conversa no WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
+    <path d="M20.52 3.48A11.8 11.8 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.17 1.6 6L0 24l6.26-1.64A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.82c-1.82 0-3.6-.49-5.15-1.42l-.37-.22-3.72.98 1-3.62-.24-.38A9.73 9.73 0 0 1 2.18 12c0-5.42 4.4-9.82 9.82-9.82 2.63 0 5.1 1.03 6.96 2.9a9.78 9.78 0 0 1 2.86 6.92c0 5.42-4.4 9.82-9.82 9.82zm5.44-7.45c-.3-.15-1.77-.87-2.05-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.36.23-.66.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.18-.3-.02-.46.13-.61.13-.13.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.63-.93-2.23-.24-.58-.48-.5-.68-.51l-.58-.01c-.2 0-.52.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.16 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.07-.12-.26-.2-.56-.35z"/></svg>
+      </svg>
+
+      <span class="wa-label">
+        Atendimento rápido no WhatsApp
+      </span>
+    </a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- reveal da pagina das paginas animações das paginas -->
+<script>
+function reveal() 
+{
+    const reveals = document.querySelectorAll('.reveal');
+
+    reveals.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+            el.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', reveal);
+</script>
+
+
+<!-- script para o botão hamburguer -->
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const menu = document.getElementById('menu');
+const navLinks = document.querySelectorAll('.nav-link');
+
+// Toggle do botão (X)
+menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+});
+
+// Quando abrir
+menu.addEventListener('shown.bs.collapse', () => {
+    menuBtn.classList.add('active');
+});
+
+// Quando fechar
+menu.addEventListener('hidden.bs.collapse', () => {
+    menuBtn.classList.remove('active');
+});
+
+// 🔥 FECHAR AO CLICAR EM UM LINK
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        const bsCollapse = bootstrap.Collapse.getInstance(menu);
+        if (bsCollapse) {
+            bsCollapse.hide();
+        }
+    });
+});
+</script>
+
+<!-- script para o formulario funcionar -->
+<script>
+document.getElementById("formContato").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let nome = document.getElementById("nome").value.trim();
+    let telefone = document.getElementById("telefone").value.trim();
+    let endereco = document.getElementById("endereco").value.trim();
+    let equipamento = document.getElementById("equipamento").value;
+    let dataInicio = document.getElementById("dataInicio").value;
+    let dataFim = document.getElementById("dataFim").value;
+    let mensagemExtra = document.getElementById("mensagemExtra").value.trim();
+
+    // VALIDAÇÃO
+    if (!nome || !telefone || !endereco || !equipamento || !dataInicio || !dataFim) {
+        alert("Preencha todos os campos obrigatórios!");
+        return;
+    }
+
+    // MENSAGEM INTELIGENTE
+    let mensagem = `Olá, meu nome é ${nome}%0A
+        Gostaria de saber sobre a locação de: ${equipamento}%0A
+        Período: ${dataInicio} até ${dataFim}%0A
+        Telefone: ${telefone}%0A
+        Endereço: ${endereco}%0A
+        Vocês entregam nesse endereço?%0A`;
+
+    if (mensagemExtra) {
+        mensagem += `Observações: ${mensagemExtra}%0A`;
+    }
+
+    mensagem += `%0ATem esse equipamento disponível?`;
+
+    const numero = "5531999999999"; // COLOCA SEU NÚMERO AQUI
+
+    let url = `https://wa.me/${numero}?text=${mensagem}`;
+
+    window.open(url, "_blank");
+});
+</script>
+
+<!-- script para estrela ficar  preenchida depois de clicar-->
+<script>
+    document.querySelector('.btn-fav').addEventListener('click', function() 
+    {
+    const icon = this.querySelector('i');
+    icon.classList.toggle('fa-regular');
+    icon.classList.toggle('fa-solid');
+});
+</script>
+</body>
+</html>

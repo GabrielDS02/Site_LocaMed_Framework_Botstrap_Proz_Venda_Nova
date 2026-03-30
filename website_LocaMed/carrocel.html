@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Equipamentos Médicos</title>
+
+  <link rel="icon" href="assets/icon/LocaMed-512-512.png"/>
+  <meta name="theme-color" content="#0d6efd">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+/* FUNDO TOP */
+body{
+    background: linear-gradient(135deg, #000c18, #0d3a67, #18518a);
+    color:#fff;
+}
+
+/* TITULO */
+h2{
+    font-weight:700;
+}
+
+header
+{
+    background: linear-gradient(135deg, #0d6efd, #0a58ca);
+    padding:15px 0;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    height:80px;
+    width:80px ;
+}
+
+.btn-voltar-header
+{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    background: white;
+    color:#0d6efd;
+    padding:6px 15px;
+    border-radius:20px;
+    font-weight:bold;
+    text-decoration:none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.btn-voltar-header:hover
+{
+    background: #0d6efd;
+    color: white;
+    border: 1px solid white;
+}
+
+/* REMOVE CLICK BUG */
+.carousel
+{
+    position:relative;
+}
+
+/* BOTÕES FORA DO CONTEÚDO */
+.carousel-control-prev,
+.carousel-control-next{
+    width:50px;
+    height:50px;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(13,110,253,1.8) !important;
+    border-radius:50%;
+    z-index:10;
+}
+
+/* POSIÇÃO FORA */
+.carousel-control-prev{
+    left:-5px;
+}
+
+.carousel-control-next{
+    right:-5px;
+}
+
+/* GARANTE CLIQUE NOS CARDS */
+.card
+{
+    position:relative;
+    z-index:20;
+}
+/* CARD PREMIUM */
+.card
+{
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.4s;
+    background:#ffffff;
+    color:#000;
+    position:relative;
+    z-index: 20;
+}
+
+.card:hover{
+    transform: translateY(-10px) scale(1.03);
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* IMAGEM */
+.card img{
+    height:180px;
+    object-fit:cover;
+}
+
+/* BOTÕES */
+.btn-primary{
+    background:#0ea5e9;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#0284c7;
+}
+
+.btn-outline-dark:hover{
+    background:#000;
+    color:#fff;
+}
+
+/* BOTÃO ESTRELA */
+.btn-fav{
+    border:none;
+    background:none;
+    font-size:22px;
+    color:#f1c40f;
+    transition:0.3s;
+}
+
+.btn-fav:hover{
+    transform:scale(1.3);
+}
+
+/* MODAL */
+.modal-custom{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+.modal-content-custom{
+    background:#fff;
+    color:#000;
+    padding:25px;
+    border-radius:12px;
+    width:90%;
+    max-width:420px;
+    text-align:center;
+    animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+.fechar{
+    float:right;
+    cursor:pointer;
+    font-size:24px;
+}
+
+/* BOTÃO CARRINHO */
+.btn-warning{
+    background:#0d6efd;
+    border:none;
+}
+
+.btn-warning:hover{
+    background-color: #377bf9;
+}
+
+/* CARROSSEL CONTROLE */
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    filter:invert(1);
+}
+
+.btn-red
+{
+    background-color: rgb(251, 0, 0);
+}
+.btn-red:hover
+{
+    background-color: rgb(198, 0, 0);
+}
+
+.badge-carrinho{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:#fff;
+    font-size:12px;
+    padding:4px 8px;
+    border-radius:50%;
+    font-weight:bold;
+    display:none;
+    animation:pulse 0.4s ease;
+}
+
+@keyframes pulse{
+    0%{transform:scale(0.5);}
+    100%{transform:scale(1);}
+}
+
+
+footer{
+    background:#0d1b2a;
+    padding:30px;
+    text-align:center;
+    margin-top:50px;
+}
+
+footer p{
+    margin:0;
+    color:#ccc;
+}
+
+/* MOBILE AJUSTES */
+@media (max-width: 768px)
+{
+
+.carousel-control-prev,
+.carousel-control-next
+{
+    z-index:30;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header class="text-center position-relative">
+
+    <a href="animacao1.html" class="btn-voltar-header">← Voltar</a>
+
+    <img src="assets/icon/Logo_introdução.png" class="logo">
+
+</header>
+
+<div class="container py-5">
+
+
+<h2 class="text-center mb-4">Equipamentos Médicos Disponiveis </h2>
+
+<button style="font-style: italic;" onclick="abrirCarrinho()" class="btn btn-warning mb-3 position-relative">
+    ⭐ Favoritos
+
+    <span id="badgeCarrinho" class="badge-carrinho">
+        0
+    </span>
+</button>
+
+<div id="carouselProdutos" class="carousel slide px-2 px-md-5 py-2" data-bs-touch="true">
+
+<div class="carousel-inner">
+
+<!-- ================= SLIDE 1 ================= -->
+<div class="carousel-item active">
+<div class="row g-4 mt-1">
+
+<!-- PRODUTOS -->
+<!-- 1 -->
+<div class="col-6 col-md-3">
+<div class="card">
+<img src="assets-equipamentos/monitor_multiparametro_hospitalar.webp">
+<div class="card-body text-center">
+<h6>Multiparamétrico</h6>
+<p class="text-muted text-decoration-line-through">R$ 8900</p>
+<div class="alert alert-success py-1">R$ 6790</div>
+
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Monitor Multiparamétrico',6790)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Monitor Multiparamétrico','Monitor completo hospitalar',6790)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Monitor Multiparamétrico',6790)">
+<i class="fa-regular fa-star"></i></button>
+
+</div></div></div>
+
+<!-- 2 -->
+<div class="col-6 col-md-3">
+<div class="card">
+<img src="assets-equipamentos/bomba de infusao.webp">
+<div class="card-body text-center">
+<h6>Bomba de Infusão</h6>
+<p class="text-muted text-decoration-line-through">R$ 5200</p>
+<div class="alert alert-success py-1">R$ 3980</div>
+
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Bomba de Infusão',3980)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Bomba de Infusão','Controle preciso de medicamentos',3980)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Bomba de Infusão',3980)">
+<i class="fa-regular fa-star"></i></button>
+
+</div></div></div>
+
+<!-- 3 -->
+<div class="col-6 col-md-3">
+<div class="card">
+<img src="assets-equipamentos/desfribilador.jpg">
+<div class="card-body text-center">
+<h6>Desfibrilador</h6>
+<p class="text-muted text-decoration-line-through">R$ 12000</p>
+<div class="alert alert-success py-1">R$ 9450</div>
+
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Desfibrilador',9450)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Desfibrilador','Equipamento de emergência cardíaca',9450)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Desfibrilador',9450)">
+<i class="fa-regular fa-star"></i></button>
+
+</div></div></div>
+
+<!-- 4 -->
+<div class="col-6 col-md-3">
+<div class="card">
+<img src="assets-equipamentos/oximetro.webp">
+<div class="card-body text-center">
+<h6>Oxímetro Digital</h6>
+<p class="text-muted text-decoration-line-through">R$ 450</p>
+<div class="alert alert-success py-1">R$ 299</div>
+
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Oxímetro',299)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Oxímetro','Mede oxigenação',299)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Oxímetro',299)">
+<i class="fa-regular fa-star"></i></button>
+
+</div></div></div>
+
+</div>
+</div>
+
+<!-- ================= SLIDE 2 ================= -->
+<div class="carousel-item">
+<div class="row g-4 mt-1">
+
+<!-- 5 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/ventilador_pulmonar.jpg">
+<div class="card-body text-center">
+<h6>Ventilador Pulmonar</h6>
+<p class="text-muted text-decoration-line-through">R$ 18.500</p>
+<div class="alert alert-success py-1">R$ 15.000</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Ventilador Pulmonar',15000)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Ventilador','Suporte respiratório',15000)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Ventilador',15000)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 6 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/eletrocardiograma.webp">
+<div class="card-body text-center">
+<h6>Eletrocardiógrafo</h6>
+<p class="text-muted text-decoration-line-through">R$ 8.150</p>
+<div class="alert alert-success py-1">R$ 5.200</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Eletrocardiógrafo',5200)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('ECG','Exame cardíaco',5200)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('ECG',5200)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 7 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/autoclave.webp">
+<div class="card-body text-center">
+<h6>Autoclave</h6>
+<p class="text-muted text-decoration-line-through">R$ 12.000</p>
+<div class="alert alert-success py-1">R$ 4.300</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Autoclave',4300)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Autoclave','Esterilização hospitalar',4300)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Autoclave',4300)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 8 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/ultrassom_portatil.webp">
+<div class="card-body text-center">
+<h6>Ultrassom Portátil</h6>
+<p class="text-muted text-decoration-line-through">R$ 12.900</p>
+<div class="alert alert-success py-1">R$ 9.800</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Ultrassom',9800)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Ultrassom','Diagnóstico por imagem',9800)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Ultrassom',9800)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+</div>
+</div>
+
+<!-- ================= SLIDE 3 ================= -->
+<div class="carousel-item">
+<div class="row g-4 mt-1">
+
+<!-- 9 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/aspirador_cirurgico.jpg">
+<div class="card-body text-center">
+<h6>Aspirador Cirúrgico</h6>
+<p class="text-muted text-decoration-line-through">R$ 3.300</p>
+<div class="alert alert-success py-1">R$ 2.100</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Aspirador',2100)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Aspirador','Sucção hospitalar',2100)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Aspirador',2100)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 10 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/incubadora_neonatal.png">
+<div class="card-body text-center">
+<h6>Incubadora Neonatal</h6>
+<p class="text-muted text-decoration-line-through">R$ 20.899</p>
+<div class="alert alert-success py-1">R$ 18.500</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Incubadora',18500)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Incubadora','Cuidado neonatal',18500)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Incubadora',18500)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 11 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/raio_x_portatil.jpg">
+<div class="card-body text-center">
+<h6>Raio-X Portátil</h6>
+<p class="text-muted text-decoration-line-through">R$ 25.000</p>
+<div class="alert alert-success py-1">R$ 22.000</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Raio-X',22000)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Raio-X','Imagem radiológica',22000)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Raio-X',22000)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 12 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/estetoscopio_digital.jpg">
+<div class="card-body text-center">
+<h6>Estetoscópio Digital</h6>
+<p class="text-muted text-decoration-line-through">R$ 1.200</p>
+<div class="alert alert-success py-1">R$ 890</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Estetoscópio',890)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Estetoscópio','Ausculta avançada',890)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Estetoscópio',890)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+</div>
+</div>
+
+<!-- ================= SLIDE 4 ================= -->
+<div class="carousel-item">
+<div class="row g-4 mt-1">
+
+<!-- 13 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/termometro_infravermelho.webp">
+<div class="card-body text-center">
+<h6>Termômetro</h6>
+<p class="text-muted text-decoration-line-through">R$ 679</p>
+<div class="alert alert-success py-1">R$ 199</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Termômetro',199)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Termômetro','Medição sem contato',199)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Termômetro',199)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 14 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/cadeira_de_rodas.webp">
+<div class="card-body text-center">
+<h6>Cadeira de Rodas</h6>
+<p class="text-muted text-decoration-line-through">R$ 3.400</p>
+<div class="alert alert-success py-1">R$ 1.200</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Cadeira de Rodas',1200)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Cadeira','Mobilidade',1200)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Cadeira',1200)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 15 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/maca_hospitalar.webp">
+<div class="card-body text-center">
+<h6>Maca Hospitalar</h6>
+<p class="text-muted text-decoration-line-through">R$ 3900</p>
+<div class="alert alert-success py-1">R$ 3.500</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Maca',3500)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Maca','Transporte de pacientes',3500)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Maca',3500)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+<!-- 16 -->
+<div class="col-6 col-md-3"><div class="card"><img src="assets-equipamentos/detector_fecal.webp">
+<div class="card-body text-center">
+<h6>Detector Fetal Digital</h6>
+<p class="text-muted text-decoration-line-through">R$ 12000</p>
+<div class="alert alert-success py-1">R$ 780</div>
+<button class="btn btn-primary btn-sm" onclick="abrirWhats('Detector Fetal',780)">WhatsApp</button>
+<button class="btn btn-outline-dark btn-sm" onclick="abrirDetalhes('Detector','Batimentos do bebê',780)">Ver mais</button>
+<button class="btn-fav" onclick="addCarrinho('Detector',780)"><i class="fa-regular fa-star"></i></button>
+</div></div></div>
+
+</div>
+</div>
+
+</div>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselProdutos" data-bs-slide="prev">
+<span class="carousel-control-prev-icon"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#carouselProdutos" data-bs-slide="next">
+<span class="carousel-control-next-icon"></span>
+</button>
+
+</div>
+</div>
+
+<!-- MODAL DETALHES -->
+<div id="modalDetalhes" class="modal-custom">
+<div class="modal-content-custom">
+    <span onclick="fecharDetalhes()" class="fechar">&times;</span>
+
+    <h3 id="tituloDetalhe"></h3>
+    <p id="descDetalhe"></p>
+    <p><strong>R$ </strong><span id="precoDetalhe"></span></p>
+
+    <button class="btn btn-success" onclick="comprarDetalhe()">WhatsApp</button>
+
+</div>
+</div>
+
+<!-- MODAL CARRINHO -->
+<div id="modalCarrinho" class="modal-custom">
+<div class="modal-content-custom">
+<span onclick="fecharCarrinho()" class="fechar">&times;</span>
+
+<h3>Favoritos</h3>
+
+<ul id="listaCarrinho"></ul>
+<p> valor total para aluguel de equipamentos:</p>
+<p id="informacao"><strong>Total: R$ </strong><span id="totalCarrinho">0</span></p>
+
+<button class="btn btn-success" onclick="enviarCarrinho()">Enviar WhatsApp</button>
+
+<button class="btn btn-red" onclick="limparCarrinho()">Limpar</button>
+
+</div>
+</div>
+
+
+<footer>
+    <h5>LocaMed Equipamentos Médicos</h5>
+    <p>Equipamentos hospitalares modernos para clínicas e hospitais</p>
+    <p>© 2026 - Todos os direitos reservados</p>
+</footer>
+
+<script>
+const numeroWhats = "5599999999999";
+
+let carrinho = [];
+let produtoAtual = {};
+
+function abrirWhats(nome, preco)
+{
+let msg = `Olá, tenho interesse em: ${nome} - R$ ${preco}`;
+window.open(`https://wa.me/${numeroWhats}?text=${encodeURIComponent(msg)}`);
+}
+
+function abrirDetalhes(nome, desc, preco)
+{
+produtoAtual = {nome, preco};
+
+document.getElementById("tituloDetalhe").innerText = nome;
+document.getElementById("descDetalhe").innerText = desc;
+document.getElementById("precoDetalhe").innerText = preco;
+
+document.getElementById("modalDetalhes").style.display = "flex";
+}
+
+function fecharDetalhes()
+{
+document.getElementById("modalDetalhes").style.display = "none";
+}
+
+function comprarDetalhe()
+{
+abrirWhats(produtoAtual.nome, produtoAtual.preco);
+}
+
+function addCarrinho(nome, preco)
+{
+    carrinho.push({nome, preco});
+    alert("Adicionado aos favoritos ⭐");
+    atualizarBadge();
+}
+
+function atualizarBadge()
+{
+    let badge = document.getElementById("badgeCarrinho");
+    let total = carrinho.length;
+
+    if(total > 0){
+        badge.style.display = "block";
+        badge.innerText = total;
+
+        badge.style.transform = "scale(1.4)";
+        setTimeout(()=>{
+            badge.style.transform = "scale(1)";
+        },200);
+
+    }else{
+        badge.style.display = "none";
+    }
+}
+
+function abrirCarrinho()
+{
+let lista = document.getElementById("listaCarrinho");
+let total = 0;
+
+lista.innerHTML = "";
+
+carrinho.forEach(item=>{
+total += item.preco;
+
+let li = document.createElement("li");
+li.innerText = `${item.nome} - R$ ${item.preco}`;
+lista.appendChild(li);
+});
+
+document.getElementById("totalCarrinho").innerText = total;
+
+document.getElementById("modalCarrinho").style.display = "flex";
+}
+
+function fecharCarrinho()
+{
+document.getElementById("modalCarrinho").style.display = "none";
+}
+
+function enviarCarrinho()
+{
+let msg = "Olá, tenho interesse nos equipamentos:\n";
+
+carrinho.forEach(item=>{
+msg += `- ${item.nome} (R$ ${item.preco})\n`;
+});
+
+let total = carrinho.reduce((s,i)=>s+i.preco,0);
+
+msg += `Total: R$ ${total}`;
+
+window.open(`https://wa.me/${numeroWhats}?text=${encodeURIComponent(msg)}`);
+}
+
+function limparCarrinho()
+{
+    // limpa o array
+    carrinho = [];
+
+    // limpa lista visual
+    document.getElementById("listaCarrinho").innerHTML = "";
+
+    // zera total
+    document.getElementById("totalCarrinho").innerText = "0";
+
+    // atualiza badge (bolinha vermelha)
+    atualizarBadge();
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocMed | Carregando</title>
+
+
+  <link rel="icon" href="assets/icon/LocaMed-512-512.png"/>
+  <meta name="theme-color" content="#0d6efd">
+  
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FUNDO ANIMADO */
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(270deg, #0d6efd, #00d4ff, #0a58ca);
+    background-size: 600% 600%;
+    animation: gradientMove 10s ease infinite;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ANIMAÇÃO FUNDO */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* CONTAINER */
+.intro {
+    text-align: center;
+    color: white;
+}
+
+/* LOGO */
+.logo {
+    width: 350px;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: logoIn 1.5s ease forwards;
+}
+
+.subtitulo {
+    margin-top: 10px;
+    font-size: 1.7rem;
+    opacity: 0;
+    animation: fadeUp 1.5s ease forwards;
+    animation-delay: 2s;
+    font-weight: 700;
+}
+
+/* ANIMAÇÕES */
+@keyframes logoIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* EFEITO FINAL (fade out) */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="intro">
+
+    <img src="assets/icon/Logo_introdução.png" class="logo" alt="LocMed">
+
+    <p class="subtitulo">
+        Tecnologia e cuidado para a saúde
+    </p>
+
+</div>
+
+<script>
+
+/* TEMPO TOTAL DA INTRO */
+setTimeout(() => {
+    document.getElementById("intro").classList.add("fade-out");
+}, 4000);
+
+/* REDIRECIONAMENTO */
+setTimeout(() => {
+    window.location.href = "PaginaPrincipal.html"; // SUA PÁGINA PRINCIPAL
+}, 5000);
+
+</script>
+
+</body>
+</html>
